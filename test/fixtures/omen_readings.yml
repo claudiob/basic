@@ -1,0 +1,14 @@
+_fixture:
+  model_class: Chat
+
+chat:
+  type: Chat
+  agent: agent
+  status: completed
+  questions_count: 7
+
+failed_chat:
+  type: Chat
+  agent: agent
+  status: failed
+  questions_count: 1

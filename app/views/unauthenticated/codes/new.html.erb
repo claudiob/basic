@@ -1,0 +1,13 @@
+<% content_for :title, 'Welcome' %>
+<% content_for :subtitle, 'Authenticate with your phone' %>
+
+<% content_for :card do %>
+  <%= form_with url: code_path, scope: :contact, data: { controller: :require } do |form| %>
+    <%= form.fieldset do %>
+      <%= form.label :phone, 'Enter your mobile number' do %>
+        <%= form.phone_field :phone, required: true, autofocus: true %>
+      <% end %>
+      <%= form.submit 'Sign in' %>
+    <% end %>
+  <% end %>
+<% end %>

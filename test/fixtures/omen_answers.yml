@@ -1,0 +1,59 @@
+_fixture:
+  model_class: Omen::Answer
+
+contacts:
+  question: contacts
+  stop_reason: end_turn
+  content:
+    - type: text
+      text: '{"sql": "", "note": "Two, and each one signed in."}'
+
+names:
+  question: names
+  stop_reason: end_turn
+  content:
+    - type: text
+      text: '{"sql": "SELECT 1", "note": "The contacts who signed in."}'
+  result:
+    - { name: Example, surname: Swiftly }
+    - { name: Taylor, surname: '' }
+
+count:
+  question: count
+  stop_reason: end_turn
+  content:
+    - type: text
+      text: '{"sql": "SELECT 1", "note": "Contacts who signed in."}'
+  result:
+    - { contacts: 2 }
+
+nothing:
+  question: nothing
+  stop_reason: end_turn
+  content:
+    - type: text
+      text: '{"sql": "SELECT 1", "note": "Contacts from last century."}'
+
+refused:
+  question: refused
+  error: the statement was refused
+  content:
+    - type: text
+      text: '{"sql": "DELETE FROM contacts", "note": "Deletes the contacts."}'
+
+ran_long:
+  question: ran_long
+  stop_reason: max_tokens
+  content:
+    - type: text
+      text: '{"sql": "SELECT 1", "note": "Every contact."}'
+  result:
+    - { name: One }
+    - { name: Two }
+    - { name: Three }
+    - { name: Four }
+    - { name: Five }
+    - { name: Six }
+    - { name: Seven }
+    - { name: Eight }
+    - { name: Nine }

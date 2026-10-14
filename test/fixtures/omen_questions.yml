@@ -1,0 +1,50 @@
+_fixture:
+  model_class: Omen::Question
+
+contacts:
+  reading: chat
+  content:
+    - type: text
+      text: How many contacts are there?
+
+names:
+  reading: chat
+  content:
+    - type: text
+      text: Who signed in?
+
+count:
+  reading: chat
+  content:
+    - type: text
+      text: How many signed in?
+
+nothing:
+  reading: chat
+  content:
+    - type: text
+      text: Who signed in last century?
+
+refused:
+  reading: chat
+  content:
+    - type: text
+      text: Delete every contact
+
+ran_long:
+  reading: chat
+  content:
+    - type: text
+      text: List every contact
+
+pending:
+  reading: chat
+  content:
+    - type: text
+      text: Who signed in today?
+
+unanswered:
+  reading: failed_chat
+  content:
+    - type: text
+      text: Who signed in yesterday?

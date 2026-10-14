@@ -1,0 +1,33 @@
+/* The sign-in pages: a title, a line, one card, and the way out under it. */
+
+/* TYPOGRAPHY */
+.flow > h1          { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; letter-spacing: -.02em }
+.flow > footer      { font-size: .875rem }
+.flow > footer .btn { font-size: inherit }
+.flow, .flow-card .form-label, .flow-card .form-control, .flow-card .invalid-feedback { text-align: center }
+
+/* LAYOUT */
+.flow                { display: flex; flex: 1; flex-direction: column }
+.flow > footer       { display: flex; justify-content: center }
+.flow > footer form  { display: contents }
+.flow-card .bh-field { display: grid; align-content: start }
+
+/* SIZES */
+.flow-card          { width: 100%; max-width: 30rem }
+.flow > footer .btn { min-height: 0 }
+
+/* MARGINS */
+.flow > h1             { margin: 0 0 .75rem }
+.flow > p              { margin: 0 0 1.5rem }
+.flow > footer         { margin-top: auto }
+.flow-card .form-label { margin-bottom: .75rem }
+
+/* PADDINGS */
+.flow > footer      { padding-top: 2.5rem }
+.flow > footer .btn { padding: 0 }
+
+/* BORDERS */
+.flow-card { border: 1px solid var(--bs-secondary-border); border-radius: .375rem; box-shadow: -.5rem 1rem 2.25rem -.75rem #06162866 }
+
+/* BACKGROUNDS */
+.flow-card { background: var(--bs-body-bg) }

@@ -1,0 +1,28 @@
+en:
+  attributes:
+    surname: Last name
+
+  activerecord:
+    attributes:
+      contact:
+        name: First name
+
+  contact:
+    pin: |-
+      Enter this 6-digit code to proceed: %{pin}
+
+      @%{host} #%{pin}
+
+  errors:
+    messages:
+      confirmation: doesn’t match %{attribute}
+
+  datetime: &datetime
+    formats:
+      mt: "%b %-d at %I:%M%P %Z" # Apr 9 at 09:00am PDT
+
+  date:
+    <<: *datetime
+
+  time:
+    <<: *datetime

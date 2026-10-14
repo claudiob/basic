@@ -1,0 +1,159 @@
+# Omakase Ruby styling for Rails, plus every rule of STYLE.md a cop can check.
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+AllCops:
+  # Adopt every cop a new release brings, rather than pinning to today's set
+  NewCops: enable
+  # An extension we decline is declined in this file, not merely ignored
+  SuggestExtensions: false
+
+# GEMFILE
+
+# Alphabetical, one block, a comment saying what would break without each gem, no version
+Bundler/OrderedGems:
+  Enabled: true
+  TreatCommentsAsGroupSeparators: false
+Bundler/GemComment:
+  Enabled: true
+Bundler/GemVersion:
+  Enabled: true
+  EnforcedStyle: forbidden
+  # Rails comes from its main branch, which is a source rather than a version
+  AllowedGems: [rails]
+
+# LAYOUT
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+  # A class declaration stays on one line however long its two names run
+  AllowedPatterns:
+    - '^\s*class '
+
+Layout/IndentationWidth:
+  Enabled: true
+Layout/IndentationStyle:
+  Enabled: true
+Layout/TrailingWhitespace:
+  Enabled: true
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: true
+
+# 'private' sits at the level of 'class', so it reads as a divider
+Layout/AccessModifierIndentation:
+  Enabled: true
+  EnforcedStyle: outdent
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+# METRICS
+
+Metrics/ClassLength:
+  Enabled: true
+  CountComments: true
+  Max: 48
+  Include:
+      - 'app/**/*'
+
+Metrics/ModuleLength:
+  Enabled: true
+  CountComments: true
+  Max: 40
+  Include:
+      - 'app/**/*'
+
+# NAMING
+
+Naming/MethodName:
+  Enabled: true
+Naming/VariableName:
+  Enabled: true
+Naming/ConstantName:
+  Enabled: true
+Naming/ClassAndModuleCamelCase:
+  Enabled: true
+
+# STYLE
+
+# One line before every public class, module and method; a migration documents itself in its name
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'test/**/*'
+Style/DocumentationMethod:
+  Enabled: true
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'test/**/*'
+
+# We never freeze a string, so the magic comment has nothing to say
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: never
+
+# The cop demands '.freeze' on string constants and cannot skip them
+Style/MutableConstant:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# One 'include' statement carries the list, split only when it will not fit
+Style/MixinGrouping:
+  Enabled: true
+  EnforcedStyle: grouped
+
+# do...end for a multi-line block, braces for a one-line block
+Style/BlockDelimiters:
+  Enabled: true
+
+# A one-expression method may be endless, and only on one line. 'require_single_line' would also
+# demand it where the body assigns, takes a block or ends in a modifier if, which STYLE.md forbids
+Style/EndlessMethod:
+  Enabled: true
+  EnforcedStyle: allow_single_line
+
+Style/UnlessElse:
+  Enabled: true
+Style/RedundantReturn:
+  Enabled: true
+Style/SafeNavigation:
+  Enabled: true
+Style/ArrayCoercion:
+  Enabled: true
+Style/MapIntoArray:
+  Enabled: true
+Style/EachWithObject:
+  Enabled: true
+
+# Omit parentheses on a call's arguments, keeping the inner ones parsing needs -- but a line
+# carrying an `if` keeps them, and 'omit_parentheses' has no option for that exception, so the
+# rule lives in STYLE.md rather than here
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
+
+# RAILS
+
+# A has_many or has_one says what happens to its children
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+Rails/ReversibleMigration:
+  Enabled: true
+Rails/HelperInstanceVariable:
+  Enabled: true

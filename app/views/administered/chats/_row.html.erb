@@ -1,0 +1,13 @@
+<%# locals: (chat:) -%>
+
+<%= column header: 'Question' do %>
+  <%= turbo_link_to chat, chat_path(chat) %>
+<% end %>
+
+<%= column header: 'Questions' do %>
+  <%= number_with_delimiter chat.questions.size %>
+<% end %>
+
+<%= column header: 'Created at' do %>
+  <%= l chat.created_at, format: :mt %>
+<% end %>

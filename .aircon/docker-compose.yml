@@ -1,0 +1,32 @@
+services:
+  network:
+    image: alpine:latest
+    command: sleep infinity
+    ports:
+      - "${HOST_PORT:-3001}:6289"
+
+  basic:
+    image: basic:latest
+    build:
+      context: ..
+      dockerfile: .aircon/Dockerfile
+      args:
+        USERNAME: ${AIRCON_CONTAINER_USER:-appuser}
+        WORKSPACE_PATH: ${AIRCON_WORKSPACE_PATH:-/workspace}
+    network_mode: "service:network"
+    command: sleep infinity
+    environment:
+      PGUSER: ${AIRCON_APP_NAME:-app}
+      PGHOST: db
+      RAILS_ENV: development
+      RAILS_BIND: 0.0.0.0
+    depends_on:
+      db:
+        condition: service_started
+
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${AIRCON_APP_NAME:-app}
+      POSTGRES_HOST_AUTH_METHOD: trust

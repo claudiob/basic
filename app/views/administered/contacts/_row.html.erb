@@ -1,0 +1,13 @@
+<%# locals: (contact:) -%>
+
+<%= column header: sort_header(:name, 'Name') do %>
+  <%= search_highlight contact, :name %>
+<% end %>
+
+<%= column header: 'Phone' do %>
+  <%= search_highlight number_to_phone(contact.phone), :phone %>
+<% end %>
+
+<%= column header: sort_header(:created_at, 'Created at') do %>
+  <%= l contact.created_at, format: :mt %>
+<% end %>
