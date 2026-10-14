@@ -1,0 +1,51 @@
+# Two entries, one database: 'reader' logs in as basic_reader, granted SELECT only.
+<%
+  primary_url = URI.parse ENV['DATABASE_URL'].to_s
+  reader_database = primary_url.path.to_s.sub(%r{\A/}, '')
+  reader_password = ENV['BASIC_READER_PASSWORD'] || ('reader' if Rails.env.local?)
+%>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # A database shared with another app keeps each app's tables in the first schema of the path
+  schema_search_path: <%= ENV.fetch('DATABASE_SEARCH_PATH', 'public') %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+
+reader: &reader
+  replica: true
+  url: <%= ENV['DATABASE_READER_URL'] %>
+  host: <%= primary_url.host %>
+  port: <%= primary_url.port %>
+  username: basic_reader
+  password: <%= reader_password %>
+  variables:
+    statement_timeout: 15000
+    default_transaction_read_only: 'on'
+
+development:
+  primary: &development
+    <<: *default
+    database: basic_development
+  reader:
+    <<: [*reader, *development]
+    database: <%= reader_database.presence || 'basic_development' %>
+
+test:
+  primary: &test
+    <<: *default
+    database: basic_test
+  reader:
+    <<: [*reader, *test]
+    database: <%= reader_database.presence || 'basic_test' %>
+
+production:
+  primary: &production
+    <<: *default
+    database: basic_production
+    username: basic
+    password: <%= ENV['BASIC_DATABASE_PASSWORD'] %>
+  reader:
+    <<: [*reader, *production]
+    database: <%= reader_database.presence || 'basic_production' %>
+    # A plan that refuses to create roles reads as the primary's user, still read-only
+    url: <%= ENV['DATABASE_READER_URL'] || ENV['DATABASE_URL'] %>

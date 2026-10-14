@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby
+exec './bin/rails', 'server', '-b', ENV.fetch('RAILS_BIND', 'localhost'), '-p', ENV.fetch('PORT', '6289'), *ARGV

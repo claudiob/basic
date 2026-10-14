@@ -1,0 +1,4 @@
+<%= turbo_stream_from @chat %>
+
+<%= chat_with url: chat_questions_path(@chat), hints: ['How many contacts signed in last month?'],
+      messages: thread_messages(@chat, welcome: 'What can I help with?') %>

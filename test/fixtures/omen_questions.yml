@@ -1,0 +1,15 @@
+_fixture:
+  model_class: Omen::Question
+
+contacts:
+  reading: chat
+  content:
+    - type: text
+      text: How many contacts are there?
+
+pending:
+  reading: chat
+  content:
+    - type: text
+      text: Who signed in today?
+

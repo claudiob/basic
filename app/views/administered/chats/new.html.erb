@@ -1,0 +1,9 @@
+<%= form_with url: chats_path, scope: :chat, builder: Bh::FormBuilder, class: 'container-fluid m-0' do |form| %>
+  <fieldset>
+    <div class='row mb-3'><div class='col'>
+      <%= form.label :question, 'What can I help with?' %>
+      <%= form.text_field :question, required: true, placeholder: 'How many contacts signed in last month?' %>
+    </div></div>
+  </fieldset>
+  <%= form.submit 'Ask' %>
+<% end %>

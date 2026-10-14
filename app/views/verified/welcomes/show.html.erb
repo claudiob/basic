@@ -1,0 +1,5 @@
+<% content_for :title, 'You’re in' %>
+
+<% content_for :footer do %>
+  <%= button_to 'Sign out', session_path, method: :delete, class: 'btn btn-link' %>
+<% end %>

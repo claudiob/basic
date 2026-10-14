@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title><%= content_for(:title) || 'Basic' %></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='color-scheme' content='light dark'>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel='stylesheet' href='<%= Bh::Engine::PREFIX %>css/bh.css'>
+    <%= stylesheet_link_tag 'flow' %>
+    <script type='module' src='<%= Bh::Engine::PREFIX %>js/bh.js'></script>
+  </head>
+
+  <body class='d-flex flex-column'>
+    <main class='container-fluid py-4 flex-grow-1 d-flex flex-column'>
+      <div class='flow'>
+        <h1><%= yield :title %></h1>
+        <%= tag.p yield(:subtitle) if content_for? :subtitle %>
+        <%= tag.div yield(:card), class: 'flow-card p-3 md:p-4 mx-auto' if content_for? :card %>
+        <%= tag.footer yield(:footer) if content_for? :footer %>
+      </div>
+    </main>
+
+    <%= toasts %>
+  </body>
+</html>

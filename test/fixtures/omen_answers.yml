@@ -1,0 +1,10 @@
+_fixture:
+  model_class: Omen::Answer
+
+contacts:
+  question: contacts
+  stop_reason: end_turn
+  content:
+    - type: text
+      text: '{"sql": "", "note": "Two, and each one signed in."}'
+
