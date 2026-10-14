@@ -4,7 +4,7 @@ class Unauthenticated::AgentsController < UnauthenticatedController
   self.writes_on_read = true
 
   # Only allow admins with Google accounts in this domain.
-  ALLOWED_DOMAIN = "@#{ENV.fetch 'ADMIN_DOMAIN', 'example.com'}"
+  ALLOWED_DOMAIN = "@#{ENV.fetch 'ADMIN_DOMAIN', 'gmail.com'}"
 
   rescue_from(Yt::HTTPError) { |error| refuse error.message }
   before_action :require_code

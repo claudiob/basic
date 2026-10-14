@@ -5,7 +5,7 @@ class Administered::ChatsControllerTest < ActionDispatch::IntegrationTest
     get new_agent_path(code: 'mock-email')
     @chat = omen_readings :chat
     stub_claude claude_answers(note: 'Ask me something.')
-    @another = Agent.create!(email: 'another@example.com').chats.create! question: 'Whose?'
+    @another = Agent.create!(email: 'another@gmail.com').chats.create! question: 'Whose?'
   end
 
   test 'GET /chats lists the chats this admin opened, and nobody else’s' do

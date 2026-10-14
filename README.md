@@ -10,7 +10,7 @@ Google and read contacts, chats and agents.
 - `bin/rails db:prepare`
 - `bin/rails server`
 - Open http://localhost:6289 to sign in with a number, or http://localhost:6289/contacts as
-  `admin@example.com`
+  `claudiob@gmail.com`
 
 Outside production a code is not texted: read it from `contacts.pin`.
 

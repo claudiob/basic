@@ -18,6 +18,6 @@ class Unauthenticated::AgentsControllerTest < ActionDispatch::IntegrationTest
 
     Yt.configuration.mock_auth_email = 'agent@elsewhere.com'
     get new_agent_path(code: 'mock-email')
-    assert_select 'p', 'Error: must authenticate from @example.com'
+    assert_select 'p', 'Error: must authenticate from @gmail.com'
   end
 end
