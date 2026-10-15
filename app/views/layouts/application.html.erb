@@ -7,9 +7,9 @@
     <meta name='color-scheme' content='light dark'>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel='stylesheet' href='<%= Bh::Engine::PREFIX %>css/bh.css'>
+    <%= stylesheet_link_tag '/bh/css/bh.css' %>
     <%= stylesheet_link_tag 'flow' %>
-    <script type='module' src='<%= Bh::Engine::PREFIX %>js/bh.js'></script>
+    <%= javascript_include_tag '/bh/js/bh.js', type: 'module' %>
   </head>
 
   <body class='d-flex flex-column'>
